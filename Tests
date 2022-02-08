@@ -1,0 +1,22 @@
+
+//Verificando o status de retorno
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(201);
+});
+//Verificando se o arquivo é um json
+pm.test("O Arquivo é um json", function () {
+    pm.response.to.be.json;
+});
+//Gravando o id de retorno em uma variavel global
+const resposta = pm.response.json();
+pm.globals.set("id", resposta.id);
+//Validando o nome do usuario
+pm.test("Usuario correto", function () {
+  var jsonData = pm.response.json();
+  pm.expect(jsonData.name).to.eql("Igor Souza");
+});
+//Validando o job do usuario
+pm.test("Job Correto", function () {
+  var jsonData = pm.response.json();
+  pm.expect(jsonData.job).to.eql("QA");
+});
